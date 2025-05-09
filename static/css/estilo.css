@@ -1,0 +1,35 @@
+/* projeto_galeria/static/css/estilo.css */
+body {
+    font-family: sans-serif;
+    padding-top: 56px; /* Altura da navbar fixa se usar fixed-top */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens no card */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Melhorias para o formulário se não estiver usando Bootstrap extensivamente para forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.invalid-feedback { /* Já tem no Bootstrap, mas só para garantir */
+    color: #dc3545;
+    font-size: 0.875em;
+}
+
+/* Para mensagens */
+.alert {
+    margin-top: 1rem;
+}

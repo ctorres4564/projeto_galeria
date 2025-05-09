@@ -1,0 +1,31 @@
+<!-- galeria/templates/galeria/upload_imagem.html -->
+{% extends "base.html" %}
+
+{% block titulo %}Enviar Nova Imagem{% endblock %}
+
+{% block conteudo %}
+<h1>Enviar Nova Imagem</h1>
+<form method="POST" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %} <!-- Proteção contra Cross-Site Request Forgery -->
+
+    {{ form.non_field_errors }} {# Exibe erros gerais do formulário #}
+
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }} {# Renderiza o widget do campo #}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block"> {# d-block para forçar exibição #}
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Enviar Imagem</button>
+    <a href="{% url 'listar_imagens' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

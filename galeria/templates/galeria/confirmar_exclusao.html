@@ -1,0 +1,21 @@
+<!-- galeria/templates/galeria/confirmar_exclusao.html -->
+{% extends "base.html" %}
+
+{% block titulo %}Confirmar Exclusão - {{ imagem_obj.titulo }}{% endblock %}
+
+{% block conteudo %}
+<h1>Confirmar Exclusão</h1>
+<p>Você tem certeza que deseja excluir a imagem "<strong>{{ imagem_obj.titulo }}</strong>"?</p>
+
+{% if imagem_obj.imagem %}
+<div class="my-3">
+    <img src="{{ imagem_obj.imagem.url }}" alt="{{ imagem_obj.titulo }}" style="max-width: 300px; max-height: 200px; border: 1px solid #ccc;">
+</div>
+{% endif %}
+
+<form method="POST" action="{% url 'excluir_imagem' id_imagem=imagem_obj.id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+    <a href="{% url 'listar_imagens' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

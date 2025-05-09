@@ -1,0 +1,46 @@
+<!-- galeria/templates/galeria/editar_imagem.html -->
+{% extends "base.html" %}
+
+{% block titulo %}Editar Imagem: {{ imagem_obj.titulo }}{% endblock %}
+
+{% block conteudo %}
+<h1>Editar Imagem: <em>{{ imagem_obj.titulo }}</em></h1>
+
+{% if imagem_obj.imagem %}
+<div class="my-3">
+    <p>Imagem atual:</p>
+    <img src="{{ imagem_obj.imagem.url }}" alt="Imagem atual de {{ imagem_obj.titulo }}" style="max-width: 300px; max-height: 200px; border: 1px solid #ccc;">
+</div>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.id_for_label == form.imagem.id_for_label and imagem_obj.imagem %}
+                <small class="form-text text-muted">
+                    Arquivo atual: <a href="{{ imagem_obj.imagem.url }}" target="_blank">{{ imagem_obj.imagem.name }}</a>.
+                    <br>Marque "Limpar" para remover a imagem atual sem substituí-la.
+                    Selecione um novo arquivo para substituir a imagem atual.
+                </small>
+            {% elif field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Salvar Alterações</button>
+    <a href="{% url 'listar_imagens' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
