@@ -1,35 +1,175 @@
-/* projeto_galeria/static/css/estilo.css */
+/* galeria/static/css/estilos_galeria.css */
+
 body {
-    font-family: sans-serif;
-    padding-top: 56px; /* Altura da navbar fixa se usar fixed-top */
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; /* Um cinza um pouco mais claro que o anterior */
+    color: #333;
+    line-height: 1.6;
 }
 
-.card-img-top {
+.container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Estilos para o Título da Galeria */
+.titulo-galeria-container {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Gradiente com azuis do Bootstrap */
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px; /* Mantém o mb-5 */
+}
+
+/* galeria/static/css/estilo.css */
+
+
+
+.titulo-principal-galeria {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #FFFFFF; /* Garante que é branco puro, caso o container mude no futuro */
+    text-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.6), /* Sombra preta mais forte e próxima */
+        0 0 8px rgba(0, 0, 0, 0.3);    /* Uma leve "aura" escura ao redor */
+}
+
+
+
+.titulo-principal-galeria .fas {
+    font-size: 2.5rem;
+    vertical-align: middle;
+    margin-right: 10px; /* Adicionado margin-right ao invés de mr-2 na classe HTML */
+}
+
+.subtitulo-galeria {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+/* Ajuste no h2 que ficou abaixo do título principal */
+.d-flex h2 {
+    font-size: 1.8rem;
+    color: #34495e;
+}
+
+/* Estilos Gerais para Botões */
+.btn {
+    border-radius: 20px; /* Bordas arredondadas consistentes */
+    padding: 8px 18px;   /* Padding ajustado */
+    font-weight: 500;
+    transition: all 0.25s ease-in-out;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem; /* Tamanho da fonte base para botões */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra sutil em todos os botões */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn:active { /* Efeito ao clicar */
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Botão Principal (ex: Enviar Nova Imagem) */
+.botao-principal {
+    /* Já usa btn-primary, podemos apenas ajustar o tamanho se necessário */
+    padding: 12px 25px; /* Mantém o padding maior para o botão principal */
+    font-size: 1rem;    /* Mantém o tamanho da fonte maior */
+}
+.botao-principal i {
+    margin-right: 8px;
+}
+
+
+/* Botões de Ação nos Cards */
+.botoes-card .btn {
+    padding: 5px 10px; /* Menor padding para botões de card */
+    font-size: 0.75rem; /* Menor fonte para botões de card */
+    text-transform: none;
+    border-radius: 15px; /* Mantém arredondado, mas pode ajustar */
+}
+.botoes-card .btn i {
+    margin-right: 5px;
+}
+
+.botao-editar-card {
+    /* Herda .btn-info. Se precisar sobrescrever: */
+    /* background-color: #17a2b8; color: white; */
+}
+
+.botao-excluir-card {
+    /* Herda .btn-danger. Se precisar sobrescrever: */
+    /* background-color: #dc3545; color: white; */
+}
+
+
+/* Botões de Formulário */
+.botao-formulario-salvar {
+    /* Herda .btn-success */
+}
+
+.botao-formulario-cancelar {
+    /* Herda .btn-secondary */
+}
+
+.botao-confirmar-excluir {
+    /* Herda .btn-danger */
+    font-weight: bold;
+}
+
+
+/* Estilos para a Moldura da Imagem */
+.moldura-imagem-container {
+    background-color: #fdfbf7; /* Um branco levemente amarelado para o passe-partout */
+    padding: 12px;             /* Espaçamento do passe-partout */
+    border: 8px solid #795548; /* Borda da moldura (marrom médio, tipo madeira) */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18), /* Sombra externa */
+                inset 0 0 8px rgba(0, 0, 0, 0.08); /* Sombra interna sutil */
+    /* margin: 10px; */ /* Removido para que a moldura ocupe o topo do card */
+    border-top-left-radius: calc(.25rem - 1px); /* Ajusta para o raio do card, menos a borda da imagem se houver */
+    border-top-right-radius: calc(.25rem - 1px);
+    overflow: hidden; /* Garante que a imagem interna respeite o arredondamento */
+    position: relative; /* Para posicionamento de elementos internos, se necessário */
+}
+
+.moldura-imagem-container img.card-img-top {
+    display: block;
     width: 100%;
-    height: 200px; /* Altura fixa para as imagens no card */
-    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    height: auto;
+    border: 1px solid #e0e0e0; /* Uma fina borda interna clara diretamente na imagem */
+    border-radius: 2px; /* Leve arredondamento na própria imagem */
 }
 
-.card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Melhorias para o formulário se não estiver usando Bootstrap extensivamente para forms */
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.invalid-feedback { /* Já tem no Bootstrap, mas só para garantir */
-    color: #dc3545;
-    font-size: 0.875em;
-}
-
-/* Para mensagens */
-.alert {
-    margin-top: 1rem;
+/* Placeholder para quando não há imagem, para ter uma aparência de moldura vazia */
+.moldura-placeholder {
+    background-color: #fdfbf7;
+    padding: calc(12px + 8px); /* padding da moldura + borda da moldura */
+    border: 1px dashed #b0bec5; /* Borda tracejada para indicar vazio */
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #78909c;
+    font-style: italic;
+    min-height: 220px; /* Altura mínima para consistência visual */
 }
