@@ -1,3 +1,7 @@
+![Django CI](https://github.com/ctorres4564/projeto_galeria/actions/workflows/django-ci.yml/badge.svg)
+
+
+
 # 🖼️ Projeto Galeria
 
 Este é um projeto desenvolvido com Django que simula uma **galeria de imagens**, com o objetivo de praticar os conceitos fundamentais de back-end, templates, rotas, views e estrutura de aplicações web em Python.
